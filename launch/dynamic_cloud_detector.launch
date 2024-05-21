@@ -9,7 +9,8 @@
     <arg name="skip_scan_flag" default="false"/>
     <arg name="log_odds_increase" default="0.4"/>
     <arg name="log_odds_decrease" default="0.2"/>
-    <arg name="input_cloud" default="/velodyne_obstacles"/>
+    <arg name="input_cloud" default="/velodyne_points"/>
+    <arg name="input_odom" default="/odom"/>
 
     <node pkg="dynamic_cloud_detector" type="dynamic_cloud_detector" name="dynamic_cloud_detector">
         <param name="width" value="$(arg width)"/>
@@ -20,6 +21,7 @@
         <param name="log_odds_increase" value="$(arg log_odds_increase)"/>
         <param name="log_odds_decrease" value="$(arg log_odds_decrease)"/>
         <remap from="/velodyne_obstacles" to="$(arg input_cloud)"/>
+        <remap from="/odom/complement" to="$(arg input_odom)"/>
     </node>
 
 </launch>
